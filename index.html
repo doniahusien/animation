@@ -27,7 +27,6 @@
         .cake {
             font-size: 5rem;
             margin: 20px 0;
-            position: relative;
             animation: glow 1.5s infinite alternate;
         }
 
@@ -53,29 +52,10 @@
             animation: float 5s infinite ease-in-out;
         }
 
-        .balloon:nth-child(2) {
-            background: blue;
-            left: 20%;
-            animation-delay: 1s;
-        }
-
-        .balloon:nth-child(3) {
-            background: yellow;
-            left: 40%;
-            animation-delay: 2s;
-        }
-
-        .balloon:nth-child(4) {
-            background: green;
-            left: 60%;
-            animation-delay: 3s;
-        }
-
-        .balloon:nth-child(5) {
-            background: orange;
-            left: 80%;
-            animation-delay: 4s;
-        }
+        .balloon:nth-child(2) { background: blue; left: 20%; animation-delay: 1s; }
+        .balloon:nth-child(3) { background: yellow; left: 40%; animation-delay: 2s; }
+        .balloon:nth-child(4) { background: green; left: 60%; animation-delay: 3s; }
+        .balloon:nth-child(5) { background: orange; left: 80%; animation-delay: 4s; }
 
         @keyframes float {
             0% { transform: translateY(0); opacity: 1; }
@@ -115,11 +95,21 @@
         <div class="balloon"></div>
     </div>
 
-    <audio id="birthdaySong" src="https://www.fesliyanstudios.com/play-mp3/387"></audio>
+    <audio id="birthdaySong">
+        <source src="https://www.fesliyanstudios.com/play-mp3/387" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
 
     <script>
         function playMusic() {
-            document.getElementById('birthdaySong').play();
+            let song = document.getElementById('birthdaySong');
+
+            // Try to play the audio when the user clicks the button
+            song.play().catch(error => {
+                console.log("Playback failed:", error);
+                alert("🔊 Please allow audio playback in your browser!");
+            });
+
             alert("🎊 Have an amazing year ahead, Eman! 🎊");
         }
     </script>
